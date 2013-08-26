@@ -1,0 +1,18 @@
+<form class="itemform" id="{{formid}}" action="{{itempath}}">
+{{#id}}<input type="hidden" name="_id" value="{{id}}" />{{/id}}
+{{#rev}}<input type="hidden" name="_rev" value="{{rev}}" />{{/rev}}
+<fieldset>
+  <legend>{{action}}</legend>
+    <div class="msgs"><div class="msg"></div></div>
+    <label for="name"><span>Name:</span><input type="text" name="name" value="{{name}}" /></label>
+    <label for="categ"><span>Kategorie:</span><select name="categ">{{#categ_opt}}
+	    <option value="{{cat}}" {{#selected}}selected="selected"{{/selected}}>{{catname}}</option>{{/categ_opt}}
+       </select></label>
+    <label for="deposit"><span>Pfand:</span><input type="checkbox" name="deposit"{{#deposit}} checked="checked"{{/deposit}} /></label>
+    <label for="price"><span>Sort:</span><input type="text" name="sort" value="{{sort}}" /></label>
+    <label for="price"><span>Preis:</span><input type="text" name="price" value="{{price}}" /></label>
+    <label for="itemsubmit"><input type="submit" name="itemsubmit" value="submit" /></label>
+    <label for="itemcancel"><input type="submit" name="itemcancel" value="cancel" /></label>
+    {{#id}}<label for="itemdelete"><input type="submit" name="itemdelete" value="delete" /></label>{{/id}}
+</fieldset>
+</form>

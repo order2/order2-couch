@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<title>order2 - admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<link rel="stylesheet" href="style/main.css" type="text/css">
+<link rel="stylesheet" href="style/settings.css" type="text/css">
+<link rel="stylesheet" href="../items/items.css" type="text/css">
+<link rel="stylesheet" href="vendor/order2/style/order2.css" type="text/css">
+
+</head>
+<body>
+
+<div class="page">
+  <div id="options">
+    <div id="head">
+      <div class="topic">
+        <h1>Order2<a href="admin.html">admin</a></h1></div>
+        <div class="nav" class="action">
+          <a class="navindex" title="kasse" href="index.html">kasse</a>
+        </div>
+        <div id="userinfo"></div>
+        <div id="kasseinfo"></div>
+      <p class="clear" />
+    </div>
+
+    <div class="content" id="dashboard">
+      <div class="nav">
+      </div>
+      <p class="clear" />
+    </div>
+
+    <div id="articles" class="content box" style="display:none"></div>
+    <div id="journal" class="content" style="display:none"></div>
+    <div id="status" class="content" style="display:none"></div>
+    <div id="deviceinfo" class="content box" style="display:none"></div>
+
+    <script id="deviceinfo-tpl" type="text/x-mustache" charset="utf-8">
+	<p>browser: {{appCodeName}}{{appName}}{{appVersion}} {{vendor}}</p>
+	<p>agent: {{userAgent}}</p>
+	<p>features:<ul>
+	  <li>touch: {{touch}}</li>
+	</ul></p>
+	<p>kasse:<ul>
+	  <li>version: order2 v0.23-pre (sfdev - "preview")</li>
+	  <li>order2 iconset: jules and zes</li>
+	</ul></p>
+        <p><a href="http://order2.net/">http://order2.net</a></p>
+    </script>
+
+  <!-- journal templates -->
+    <script id="orders-nav-tpl" type="text/x-mustache" charset="utf-8">
+    </script>
+    <script id="orders-date-tpl" type="text/x-mustache" charset="utf-8">
+      <div class="box">
+        <div class="dateinfo">
+          <span class="orderdate"><a href="journal-{{view}}-{{datekey}}" onclick="return false">{{date}}</a></span>
+          <ul class="detaillinks">
+            <li><a class="button total" href="total-{{view}}-{{datekey}}" onclick="return false">total</a></li>
+            <!-- <li><a class="button detail" href="detail-{{dview}}-{{datekey}}">getraenke</a></li> -->
+          </ul>
+        </div>
+        <div id="total-{{view}}-{{datekey}}" class="out"></div>
+        <div id="detail-{{dview}}-{{datekey}}" class="out"></div>
+        <div id="journal-{{view}}-{{datekey}}" class="out"></div>
+        <ul class="ordersum">
+            <li><span class="label"></span>{{value}} &euro;</li>
+        </ul>
+        <div style="clear:both;height:0;"></div>
+      </div>
+    </script>
+    <script id="orders-detail" type="ext/x-mustache" charset="utf-8">
+      <div class="detail">
+          <ul>
+              <li class="key1"><span class="label">label (preis &euro;)</span>
+                  <ul class="sums">
+                      <li>ebene0 <span class="cnt">stk</span></li>
+                      <li>ebene1 <span class="cnt">stk</span></li>
+                      <li>storno <span class="cnt">stk</span></li>
+                      <li class="sum">gesamt <span class="cnt">stk</span><span class="sum">&euro;</span></li>
+                  </ul>
+              </li>
+            {{#re}}
+              <li class="key1"><span class="label">{{label}} ({{price}})</span>
+                  <ul class="sums">
+                    {{#k2}}
+                      <li>{{#ebene0}} <span class="cnt">{{cnt}}</span>{{/ebene0}}x</li>
+                      <li>{{#ebene1}} <span class="cnt">{{cnt}}</span>{{/ebene1}}x</li>
+                      <li>{{#storno}} <span class="cnt">{{cnt}}</span>{{/storno}}x</li>
+                    {{/k2}}
+                      <li class="sum"><span class="cnt">{{cnt}}</span><span class="sum">{{sum}}</span></li>
+                  </ul>
+              </li>
+            {{/re}}
+              <li class="key1"><span class="label">-</span>
+                  <ul class="sums">
+                    {{#k2}}
+                      <li>{{#ebene0}} <span class="cnt">{{cnt}}</span> x <span class="sum">{{sum}}</span>{{/ebene0}}</li>
+                      <li>{{#ebene1}} <span class="cnt">{{cnt}}</span> x <span class="sum">{{sum}}</span>{{/ebene1}}</li>
+                      <li>{{#storno}} <span class="cnt">{{cnt}}</span> x <span class="sum">{{sum}}</span>{{/storno}}</li>
+                    {{/k2}}
+                    <li class="sum">gesamt <span class="cnt">{{total_k2_cnt}}</span><span class="sum">{{total_re}}/{{total_k2}}</span></li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+      <div class="pageend">
+    </script>
+    <!-- admin tpls -->
+    <script id="orders-dayview" type="ext/x-mustache" charset="utf-8">
+      <div class="total">
+          <ul class="sums">
+              <li>bestellungen: {{total_orders}}, artikel: {{total_anzahl}} stk.</li>
+              <li><span class="label">storno</span>
+                  <ul class="ebene">
+                    {{#ebene}}
+                    <li><span class="label">{{label}} ({{anzahl}})</span>{{brutto}} &euro;</li>
+                    {{/ebene}}
+                  </ul>
+              </li>
+              <li><span class="label">preistyp</span>
+                  <ul class="ebene1">
+                    {{#ptype}}
+                    <li><span class="label">ebene{{label}} ({{anzahl}})</span>{{brutto}} &euro;</li>
+                    {{/ptype}}
+                  </ul>
+              </li>
+              <li><span class="label">mwst</span>
+                  <ul class="mwst">
+                    {{#mwst}}
+                      <li><span class="label">{{label}}%</span>{{sum}} &euro;</li>
+                    {{/mwst}}
+                  </ul>
+                  <li><span class="label">mwst total</span>{{total_mwst}} &euro;</li>
+                  <li><span class="label">total netto</span>{{total_netto}} &euro;</li>
+              </li>
+          </ul>
+      </div>
+    </script>
+  </div>
+  <div id="copyright">order2.net 2012</div>
+
+</div>
+
+<script src="vendor/jq/sha1.js"></script>
+<script src="vendor/jq/jquery.js"></script>
+<script src="vendor/jq/numbers.js"></script>
+<script src="vendor/couchapp/jquery.mustache.js"></script>
+<script src="vendor/jq/jquery.couch.js"></script>
+<script src="vendor/jq/jquery.couchLogin.js"></script>
+<script src="../items/jquery.organicitems.js"></script>
+<script src="../items/jquery.itemForm.js"></script>
+<script src="script/settings.js"></script>
+<script src="script/journal.js"></script>
+<script src="script/dashboard.js"></script>
+
+  </body>
+</html>

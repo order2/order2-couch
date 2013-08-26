@@ -1,0 +1,106 @@
+.box li {
+  height: 3em;
+  font-size: 100%;
+  line-height: 3em;
+  display: block;
+  margin: 5px 0;
+}
+.box ul.tabs a,
+.box li.item a {
+    display: block; float: left;
+    height: 100%; width: 100%;
+    text-decoration: none;
+    text-align: left;
+    color: #555;
+    padding: 0 0 0 1em;
+}
+.box li.item a { 
+  width: 30%; }
+
+.box li a.current {
+    border-bottom: 2px solid #333;
+}
+.box ul {
+    background: white;
+}
+.box li .detail {
+    width: 66%;
+    float: right;
+}
+.box li .detail fieldset {
+    background-color: white;
+}
+
+li.item {
+    margin: 5px 0;
+}
+li.item span {
+    float: left;
+    margin-left: 5px;
+}
+
+li.item div.links {
+    display: inline;
+}
+.itemform fieldset {
+    width: 378px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}              
+.itemform .msg {
+    display: none;
+}
+.itemform .msgs {
+    height: 18px;
+}
+               
+.itemform label {
+    float: left;
+    width: 98%;
+    display: block;                                                                                                                              
+    line-height: 25px;
+}    
+.itemform label[for=itemcancel],
+.itemform label[for=itemsubmit] {
+    float: right;
+    width: 66px;
+}
+.itemform label[for=itemdelete] {
+    width: 66px;
+}
+.itemform label span, 
+.itemform label input {
+    float: left;
+}
+.itemform label span {
+    width: 40%;
+    text-align: right;
+    margin: 0 10px;
+    clear: both;
+}
+
+.actions { float: right; margin-top: 20px }
+.new { float: right; }
+
+.tabs { float: left; width: 23%; margin-top: 20px; }
+.tabs li { width: 100%; float: left; margin: 0 10px 0 0; }
+.tabs li.last { margin-right: 0; }
+.tabs li a { 
+  margin: 0 10px 0 0;
+  text-align: center; 
+}
+
+.list { float: left; width: 77%; margin-top: 20px; }
+.list .tabs { overflow: hidden; margin: 0 0 10px 0; list-style: none }
+.list .tabs li { float: left; margin: 0 10px 0 0; }
+.list .tabs li.last { margin-right: 0; }
+.list .tabs li a { 
+  margin: 0 10px 0 0;
+  font-size: 10px; 
+  text-align: center; 
+  color: #000;
+}
+.list .tabs li a.current { 
+  color: #900;
+}
+.list .tabs li a:hover { }

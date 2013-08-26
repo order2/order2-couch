@@ -1,0 +1,240 @@
+/**                        
+ * order2 Kasse
+ * @author     sf@notomorrow.de
+ * @license    AGPL(http://www.gnu.org/licenses/gpl.html)                                      
+ */
+  /** layout */
+    .page {
+        -webkit-tap-highlight-color: transparent;
+	width: 100%; height: 100%; }
+    #options {
+        display:block;
+        width: 75%; margin: 2em auto }
+    #head, #usettings, #dashboard, .box {
+	width: 100%;
+	margin: 0 0 .2em 0;
+	padding: 0 1em;
+	border-radius: 10px; border: 1px solid #555 }
+    #head div.topic {
+	float: left;
+	margin: -1em 0em 1em;
+	background: white }
+    #head div.nav {
+	float: right;
+	margin: 0 0 }
+    #head div.nav a {
+	display: block;
+	margin: .2em;
+	float: left;
+	border-radius: 10px }
+    #head #kasseinfo {
+	float: left;
+	font-size: 1.5em;
+	line-height: 3em;
+	margin: 0 1em;
+	text-align: center;
+    }
+    #head #userinfo {
+	float: left;
+	font-size: 1.5em;
+	line-height: 3em;
+	margin: 0 1em;
+	text-align: center;
+    }
+    #head #userinfo a {
+	float: right;
+	margin-top: .8em;
+
+    }
+    #dashboard div.nav a {
+	margin: 72px }
+    #usettings label.toggle {
+	margin: .2em;
+	border-radius: 10px; border: 1px solid #555 }
+    #usettings label.toggle a {
+	margin: .2em;
+	float: left;
+	border-radius: 10px; border: .2em solid #555 }
+    #usettings label.toggle a.disabled {
+	margin: .2em;
+	float: left;
+	background-color: #ccc;
+	border-radius: 10px; border: .2em solid #ccc }
+    #usettings div.nav {
+	float: right;
+	margin: 0 0 }
+    #usettings div.nav a {
+	display: block;
+	margin: .2em;
+	float: left;
+	border-radius: 10px }
+    #deviceinfo p {
+	margin-top: 1em;
+    }
+    #deviceinfo ul {
+	list-style-type: square;
+	list-style-position: inside;
+    }
+    #deviceinfo a {
+	display: block;
+	margin: 2em 0;
+	text-align: center;
+    }
+
+  /** journal */
+.item-sum {
+    text-align: right;
+}
+.orders-detail-out .orderid {
+    color: #ccc;
+}
+.orders-detail-out .item-sum {
+    color: #ccc;
+}
+
+.detaillinks {
+    float: right;
+}
+.detaillinks li {
+    display: inline;
+}
+
+.ordersum {
+    font-size: 150%;
+    text-align: right;
+    float: right;
+    clear: both;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.orderdate a {
+    color: #555;
+    font-size: 1.5em;
+    width: 77%;
+    float: left;
+    margin: 1em;
+
+}
+
+.box .label {
+    float: left;
+}
+.out .total ul {
+    width: 60%;
+    text-align: right;
+    float: left;
+    clear: both;
+    margin-bottom: 20px;
+}
+.out .total ul ul {
+    display: block;
+    margin: 0 2em;
+    width: 64%;
+    clear: none;
+}
+.out .total ul li {
+    width: 100%;
+    float: left;
+    text-align: right;
+    border-bottom: 2px solid #ccc;
+}
+.out .total ul ul li {
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+}
+.out .total ul li span {
+    height: 3em;
+    width: 20%;
+    text-align: left;
+}
+
+
+.out .detail .label {
+    width: 200px;
+}
+.out .detail ul {
+    float: left;
+    text-align: right;
+}
+.out .detail ul li {
+    float: left;
+}
+.out .detail ul li.key1 {
+    width: 100%;
+}
+.out .detail ul ul li {
+    border-left: 1px solid #ccc;
+}
+.out .detail ul.sums li {
+    width: 80px;
+    border-bottom: 1px solid #ccc;
+}
+.out .detail ul.sums li.sum {
+    width: 110px;
+}
+
+.out .detail li.sum .cnt {
+    text-align: right;
+    width: 32px;
+    float: left;
+}
+
+.show {
+    float: right;
+    margin-top: 20px; 
+}
+.out {
+  /* width: 77%; */
+  float: left;
+}
+.out .view {
+    float: left;
+    width: 77%;
+}
+.out .item-clear {
+    clear: left;
+}
+.out .view-clear {
+    clear: left;
+}
+
+.totals {
+  float: right;
+  height: 100%;
+  width: 23%;
+  margin: 8px 0;
+
+  text-align: right;
+  vertical-align: bottom;
+  color: #000;
+}
+.totals div.time,
+.totals div.sum {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.totals div {
+  margin-bottom: 10px;
+}
+
+.info .item {
+    float: left;
+    width: 85%;
+}
+.info .item .item-sum {
+    float: right;
+}
+.info .total {
+    width: 100%;
+    margin-bottom: 10px;
+    border-bottom: 1px solid;
+}
+.info .total .ts {
+}
+.info .total .item {
+    display: none;
+}
+.info .total .item-sum {
+    color: #000;
+    font-weight: bold;
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<title>order2 - options</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="style/settings.css" type="text/css">
+<link rel="stylesheet" href="style/order2.css" type="text/css">
+</head>
+<body>
+    <h1><a href="http://127.0.0.1:5992/order2/_design/order/index.html">order2 startup</a></h1>
+<div class="page">
+  <div id="status"></div>
+</div>
+<div id="account"></div>
+
+<script src="vendor/nc/sha1.js"></script>
+<script src="vendor/nc/jquery.js"></script>
+<script src="vendor/nc/jquery.couch.js"></script>
+<script src="vendor/couchapp/jquery.mustache.js"></script>
+<script src="vendor/nc/jquery.couchLogin.js"></script>
+<script src="script/order2.js"></script>
+<script src="script/settings.js"></script>
+<script type="text/javascript">
+
+  var mouse_event = 'touchend.nc';
+
+  $( function( ) {
+    var db_name = "order2";
+    var appurl = 'http://127.0.0.1:5992/'+ db_name +'/_design/kasse/index.html';
+    document.location.href = appurl;
+  });
+
+</script>
+
+    <div id="copyright">order2.net 2012</div>
+
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+<div id="{{widgetid}}">
+  <div class="actions">{{#actions}}<a href="{{href}}" class="{{class}}">{{label}}</a>{{/actions}}</div></li>
+  <ul class="tabs">
+      <li><a href="#" class="current">Alle</a></li>
+      {{#tabs}}<li><a href="#{{key}}"{{#current}} class="current"{{/current}}>{{label}}</a></li>
+      {{/tabs}}
+  </ul>    
+  <div id="{{widgetid}}-list"  class="list view">
+      {{#data}}<div id="{{tab}}"{{#hide}} style="display:none"{{/hide}}>
+      <ul id="ul{{tab}}">
+        {{#items}}<li class="item"><a href="{{show}}">{{name}}</a></li>{{/items}}
+      </ul></div>{{/data}}
+  </div>
+  <div id="{{widgetid}}-show" class="show detail"></div>
+</div>

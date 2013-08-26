@@ -1,0 +1,29 @@
+<div id="{{widgetid}}">
+    <div id="{{widgetid}}-bydate" class="view">
+        <div class="info">
+          <ul>{{#art}}
+            {{#item}}<li class="item {{class}}">
+                <span class="cnt">{{cnt}}x </span>
+                <span class="name">{{name}}</span>
+                <span class="price">{{price}}euro</span>
+		{{#deposit}}<span class="price">pfand: {{deposit}}euro</span>{{/deposit}}
+                <span class="item-sum">{{value}}</span>
+                <span class="item-clear"></san>
+            </li>{{/item}}
+            {{#total}}<li class="item {{class}}">
+                <span class="ts">{{ts}}</span>
+                <span class="bar">{{bar}}</span>
+                <span class="item-sum">{{value}}</span>
+                <span class="item-clear"></san>
+              </li>{{/total}}
+          {{/art}}</ul>
+        </div>
+    </div>
+    <span class="view-clear"></span>
+
+    <div class="totals">{{#totals}}
+      <div class="cnt">{{jcnt}}</div>
+      <div class="cnt">{{acnt}}</div>
+    {{/totals}}</div>
+    <div style="clear:both;"></div>
+</div>

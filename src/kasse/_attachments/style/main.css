@@ -1,0 +1,406 @@
+/**                        
+ * order2 Kasse
+ * @author     sf@notomorrow.de
+ * @license    AGPL(http://www.gnu.org/licenses/gpl.html)                                      
+ */
+  /** defaults */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, font, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td {
+      margin: 0; padding: 0; border: 0;
+      font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit;
+      vertical-align: baseline;
+      outline: 0;
+    }
+    a img, :link img, :visited img { border: 0; }
+    :focus { border-color: #28f428; }
+    ol, ul { list-style: none; }
+    p.clear { clear: both; }
+    strong { font-weight: bold; }
+    /* tables still need 'cellspacing="0"' in the markup */
+    table { border-collapse: collapse; border-spacing: 0; }
+    caption, th, td { text-align: left; font-weight: normal; }
+    q:before, q:after, blockquote:before, blockquote:after { content: ""; }
+    
+    p.clear, p.cleaner {
+      clear: both; }
+    strong {
+      font-weight: bold; }
+    .hide { position: absolute; top: -9999px; left: -9999px; }
+    label {
+      float: left;
+      display: block;
+      margin-bottom: .5em; }    
+    .nav, .tabs,
+    .nav a, .tabs a,
+    .nav li, .tabs li {
+      display: block;
+      float: left; }
+    .page {
+      font-size: 100%;
+      font-family: Arial; }
+    body {
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none; }
+    a {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none; }
+
+  /** layout */
+    .page {
+      float: left;
+      width: 100%;
+    }
+    #kasse {
+      -webkit-tap-highlight-color: transparent;
+      display:block; float:left;
+      margin-bottom: 3px;
+      width: 75%; }
+    #account {
+      position:fixed; bottom: 0; right: 0; }
+    #kasse #logoutbutton { display: none; }
+    ul#nav {  /* tabs */
+      position:fixed; top: 0.2em; right: 0;
+      width: 25%;
+      margin: 0; padding: 0;
+      list-style: none;
+      z-index: 920 }
+    #status {
+        display: none; }
+
+    ::-webkit-scrollbar {
+        display: none; }
+
+  /** collumns */
+    #c1 {
+      margin: 0.2em;
+    }
+    #kasse #c1 div a.topspacer {
+        display: none;
+    }
+    #kasse #c1.cols .col a.topspacer {
+      display: block;
+      position: absolute;
+      width: 10%; height: 0.32em;
+    }
+    #kasse #c1.cols .bottomspacer {
+      position: absolute;
+      bottom: 0;
+      width: 10%; height: 0.32em;
+    }
+    #kasse a {
+      -webkit-touch-callout: none;
+      display:block; float:left }
+    #kasse #c1.cols div.full {
+	display: none;
+    }
+    #kasse #c1.cols a {
+      width: 99%; height: 148px;
+      overflow: hidden;
+      margin: 0 auto .2em }
+
+    /* #kasse #c1 div.col a:nth-of-type( n+14 ) { display: none; } */
+    #c1 div.col {
+	display: inline }
+    #c1.cols div.full {
+	padding-top: 2em;
+	display: none }
+    #c1.cols div.col {
+      display: block;
+      float: left; 
+      width: 16.666%; 
+    }
+
+    #c1 div {
+      width: 100%; 
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+    #kasse #c1 div a {
+      width: 16.4%; height: 148px;
+      margin: 0 .1em .2em 0;
+    }
+
+  
+  /** items */
+    #kasse a {
+        /*
+      font-weight: 200;
+      font-size: 1em;
+      */
+      font-weight: 700;
+      font-size: 105%;
+      text-decoration:none;
+      text-align:left;
+    }
+    #kasse a span {
+      display: block;
+      margin: 5px 0 0 5px;
+    }
+    #kasse a .cnt {
+      height: 20px;
+      line-height: 20px;
+      text-align: left;
+      font-weight: bold;
+    }
+    #kasse #nav a span {
+      margin-top: 30px;
+      line-height: 1.2em;
+    }
+    #kasse #orderitems .lbl {
+      display:inline;
+      float: none; clear:none;
+      margin: 0em 0 0 .2em;
+      font-weight: normal;
+    } 
+    #kasse .lbl {
+      margin: 0em 0 0 .2em;
+      font-weight: bold;
+      float: right;
+      clear: both;
+    } 
+    #kasse .lbltoken { display: none; } 
+    #kasse.token .lblprice { display: none; } 
+    #kasse.token .lbltoken { display: block; } 
+
+
+    #kasse #total .sum,
+    #kasse.token #total .token { 
+	float: right;
+	margin: -22px 0 0 5px;
+	height: 100%;
+	width: 72%;
+	line-height: 77px;
+	text-align: right;
+	font-size: 1em; }
+    #kasse #total .token,
+    #kasse.token #total .sum { 
+      height: 22px;
+      margin: 0 0 0 91px;
+      line-height: 22px;
+      text-align: left;
+      font-size: .5em; } 
+    #kasse.token #total .token { 
+	margin: 0 0 0 5px; }
+    #kasse.token #total .sum { 
+      margin: -22px 0 0 91px;
+      float: left; }
+    #kasse #total .token {
+      float: none; }
+
+    #kasse #total .name {
+      width: 1em;
+      display: block;
+      float: left;
+      height: 100%;
+      margin: 0;
+    }
+    #kasse #total .sum .name,
+    #kasse.token #total .token .name {
+      display: none; }
+    #kasse #total .token .name,
+    #kasse.token #total .sum .name { 
+      display: inline; }
+
+    #kasse .lblprice3 { display: none; } 
+    #kasse.price3 .lblprice { display: none; } 
+    #kasse.price3 .lblprice3 { display: block; } 
+  
+  /** orderdiv */
+    #orderdiv {
+      position: fixed;
+      bottom: 0; right: 0;
+      width: 25%; height: 90%;
+    }
+    #ordertotal {
+        height: 66%;
+    }
+    #ordertotal .items {
+      height: 100%;
+      overflow-y: scroll; overflow-x: hidden;
+      margin-bottom: .2em;
+    }
+    #ordertotal .items ul {
+      float: right;
+      margin: 2em auto;
+      width: 95%;
+      padding-bottom: 2em;
+    }
+    #ordertotal .items li {
+      float: left;
+      width: 100%;
+      clear: both;
+    }
+    #ordertotal .items div {
+      float: left;
+    }
+    #ordertotal .items .name { float: left; width: 64%; margin-top: 1em; margin-left: 1em; }
+    #ordertotal .items .info { width: 31%; float: right; margin-top: 1em; margin-bottom: 1em; }
+    #ordertotal .items .info div.sum { float: right; }
+    #kasse #orderitems .total .name {
+	width: 90%;
+    } 
+    #ordertotal .items li.total .name {
+      margin-bottom: 1em;
+    }
+    #kasse #orderitems .total .info {
+	width: 100%;
+	margin: 0;
+    } 
+    #kasse #orderitems .total .info .sum {
+	width: 77px;
+    }
+    #kasse #orderitems .total .info .token .sum {
+	width: 100%;
+    }
+    #kasse #orderitems .total .info .lbl {
+	display: block;
+	text-align: right;
+	width: 81%;
+    } 
+    #ordertotal .items div { 
+    }
+    #ordertotal .items .sum { 
+      float: right;
+      margin-right: 1em;
+      text-align: right;
+    }
+    #ordertotal .items .order-edit { 
+        display: none;
+      float: right;
+      margin-left: 1em;
+      text-align: right;
+    }
+    #ordertotal .items .cnt { 
+        float: left;
+        margin-right: 1em;
+    }
+    
+    #ordertotal .items .action a { height: 48px; width: 48px; }
+    #ordertotal .items a.order-increase { background: url(../vendor/order2/img/icon.increase.png) no-repeat right 50%; }
+    #ordertotal .items a.order-decrease { background: url(../vendor/order2/img/icon.decrease.png) no-repeat right 50%; }
+    #ordertotal .items a.order-remove { background: url(../vendor/order2/img/icon.remove.png) no-repeat right 50%; margin-right: 100px; }
+  
+    #orderdiv #nav1 {
+	margin-top: .2em;
+	width: 56%;
+	height: 78px;
+	top: 66%;
+    }
+    #orderdiv .action {
+        height: 72px;
+    }
+    #orderdiv .action.book {
+	width: 36%;
+	float: right;
+	clear: right;
+    }
+    #orderdiv .action.cl {
+	margin-top: -88px;
+	float: left;
+	height: 83px;
+	width: 75px;
+    }
+    #orderdiv #order-discount {
+        height: 100%;
+	width: 100%;
+        display: block;
+        float: left;
+	padding: .1em .2em .1em 0;
+	margin: .1em .2em;
+    }
+
+    #ordertotal #total {
+        width: 98%;
+        height: 77px;
+        line-height: 77px;
+        display: block;
+        float: right;
+        text-align: right;
+	padding: .1em .2em .1em 0;
+        font-size: 3.25em;
+    }
+    #kasse #orderaction {
+	position:fixed; bottom:0; right: 16%;
+	height: 48px; width: 9%;
+        margin-top: .2em;
+        display: block;
+        float: right;
+        text-align: center;
+        font-size: 2em;
+	z-index: 1002;
+    }
+    /*
+	#ordertotal #orderaction div {
+	    width: 30%;
+	    height: 30%;
+	    float: left;
+	    display: block;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    font-size: .8em;
+	    line-height: 1em;
+	    border: 1px solid;
+	  z-index: 924;
+	}
+	#num {
+	    display: block;
+	    margin: 5px 0 0 5px;
+	    font-size: .5em;
+	    line-height: .5em;
+	    float: left;
+	    width: 50%;
+	}
+    */
+    #orderaction .settings {
+	margin: 0 48px;
+    }
+    #orderaction label {
+	width: 100%;
+    }
+    #orderaction a {
+      height: 48px; 
+      line-height: 48px;
+      font-size: 1em;
+      background-color: white;
+      border: none;
+      width: 100%;
+    }
+    #orderaction a span {
+	display: block;
+	height: 100%;
+	margin: 0 48px 0 0;
+    }
+
+    #ordertotal .order-book span { display: none; }
+    #ordertotal .order-book {
+        width: 100%;
+        float: right;
+        font-size: 2em;
+        margin: .2em .1em 0 0;
+	z-index: 1201;
+    }
+    #ordercontrol {
+        position: absolute;
+        bottom: 33%;
+        left: 0;
+    }
+
+  /** bottomfoo */
+    #bottomfoo {
+      position:fixed; bottom:0; right: 10.0%;
+      height: 48px; width: 15%;
+      z-index: 999; }
+    #account {
+      position:fixed; bottom: 0; right: 0; }
+    #logoutbutton { display: none; }
+    #bottomfoo a, 
+    #bottomfoo div {
+      float: left }

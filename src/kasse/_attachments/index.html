@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<title>order2 - kasse</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="style/main.css" type="text/css">
+<link rel="stylesheet" href="vendor/order2/style/order2.css" type="text/css">
+</head>
+<body class="kasse">
+<div class="page">
+
+  <div id="kasse">
+    <ul class="nav tabs" id="nav"></ul>
+    <div id="c1" class="list-wrap view cols"></div>
+  
+    <div id="orderdiv" style="display: none">
+      <div class="action" id="ordercontrol" style="display:none"></div>
+      <div id="ordertotal" style="display:none"></div>
+      <div class="action cl">
+        <a id="order-discount"></a>
+      </div>
+      <ul class="nav" id="nav1"></ul>
+
+    <div id="orderaction">
+      <div id="status"></div>
+    </div>
+  </div>
+  
+  <div id="bottomfoo">
+    <div id="sysactions">
+      <a class="button settings" href="#" title="admin"></a>
+    </div>
+    <div id="copyright">order2.net 2012</div>
+  </div>
+
+</div>
+<div id="account"></div>
+
+<script id="ordertotal-tpl" type="text/x-mustache" charset="utf-8">
+  <div id="orderitems" class="items">
+    <ul>
+        {{#art}}<li class="{{current}} {{cview}}">
+        <div class="name"><div class="cnt">{{cnt}}x</div>{{name}}
+        </div>
+        <div class="info">
+          {{#sum_token}}<span class="lbl cl">{{sum_token}} T</span>{{/sum_token}}
+          {{#deposit}}<span class="lbl deposit">+p</span>{{/deposit}}
+          {{#oprice}}<span class="lbl price">{{oprice}}</span>{{/oprice}}
+            <a id="edit-{{index}}" class="order-edit" href="#edit-{{index}}"><<<</a>
+          <div class="sum">{{sum}}</div>
+        </div>
+      </li>{{/art}}
+        <li class="total">
+          <div class="name"></div>
+          <div class="info">
+            {{#sum_art}}<span class="lbl art">{{cnt}} x Artikel: <div class="sum">{{sum_art}}e</div></span>{{/sum_art}}
+            {{#sum_token}}<span class="lbl token"><div class="sum">{{sum_token}}T</div></span>{{/sum_token}}
+            {{#sum_deposit}}<span class="lbl deposit">{{cnt_deposit}} x Pfand: <div class="sum">{{sum_deposit}}e</div></span>{{/sum_deposit}}
+          </div>
+      </li>
+    </ul>
+  </div>
+  <a id="total" href="#detail">
+    <div class="token">{{#sum_token}}<span class="name"></span>{{sum_token}}{{/sum_token}}</div>
+    <div class="sum"><span class="name"></span>{{sum}}</div>
+  </a>
+  <div class="action book"><a class="order-book" href="#book"><span>Buchen</span></a></div>
+  </div>
+</script>
+
+<script id="ordercontrol-tpl" type="text/x-mustache charset="utf-8">
+    <div id="action-{{id}}" class="action">
+      <a class="order-remove" href="#remove"><span>X</span></a>
+      <a class="order-decrease" href="#decrease"><span>-1</span></a>
+      <a class="order-increase" href="#increase"><span>+1</span></a>
+    </div>
+</script>
+
+<script id="item-tpl" type="text/x-mustache" charset="utf-8">
+    {{#data}}
+    {{#first}}<a class="topspacer" name="top"></a>{{/first}}
+    <a href="#add" id="{{_id}}">
+	<span class="cnt" id="cnt{{_id}}">{{_cnt}}</span>
+        <span>{{name}}</span>
+        {{#token}}<span class="lbl lbltoken">{{token}}</span>{{/token}}
+        {{#price}}<span class="lbl lblprice">{{price}}</span>{{/price}}
+        {{#deposit}}<span class="lbl deposit">+pfand</span>{{/deposit}}
+        {{#sort}}<span class="lbl sort">_{{sort}}</span>{{/sort}}
+    </a>
+    {{/data}}
+</script>
+<script id="navitem-tpl" type="text/x-mustache" charset="utf-8">
+    {{#data}}
+    <a href="#add" id="{{_id}}" title="{{name}}">
+	<span class="cnt" id="cnt{{_id}}">{{_cnt}}</span>
+        {{#price}}<span class="lbl price">{{price}}</span>{{/price}}
+        </a>{{/data}}
+</script>
+
+<script src="vendor/jq/sha1.js"></script>
+<script src="vendor/jq/jquery.js"></script>
+<script src="vendor/jq/numbers.js"></script>
+<script src="vendor/jq/jquery.couch.js"></script>
+<script src="vendor/jq/jquery.organictouch.js"></script>
+<script src="vendor/couchapp/jquery.mustache.js"></script>
+<script src="vendor/jq/jquery.couchLogin.js"></script>
+<script src="script/settings.js"></script>
+<script src="script/db.js"></script>
+<script src="script/order2.js"></script>
+<script src="script/kasse.js"></script>
+
+</body>
+</html>
+

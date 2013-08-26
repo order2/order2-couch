@@ -1,0 +1,37 @@
+<div id="{{widgetid}}">
+    <div class="detail">
+        <ul>
+            <li class="key1"><span class="label">label (preis &euro;)</span>
+                <ul class="sums">
+                    <li>ebene0 <span class="cnt">stk</span></li>
+                    <li>ebene1 <span class="cnt">stk</span></li>
+                    <li>storno <span class="cnt">stk</span></li>
+                    <li class="sum">gesamt <span class="cnt">stk</span><span class="sum">&euro;</span></li>
+                </ul>
+            </li>
+          {{#re}}
+            <li class="key1"><span class="label">{{label}} ({{price}})</span>
+                <ul class="sums">
+                  {{#k2}}
+                    <li>{{#ebene0}} <span class="cnt">{{cnt}}</span>{{/ebene0}}x</li>
+                    <li>{{#ebene1}} <span class="cnt">{{cnt}}</span>{{/ebene1}}x</li>
+                    <li>{{#storno}} <span class="cnt">{{cnt}}</span>{{/storno}}x</li>
+                  {{/k2}}
+                    <li class="sum"><span class="cnt">{{cnt}}</span><span class="sum">{{sum}}</span></li>
+                </ul>
+            </li>
+          {{/re}}
+            <li class="key1"><span class="label">-</span>
+                <ul class="sums">
+                  {{#k2}}
+                    <li>{{#ebene0}} <span class="cnt">{{cnt}}</span> x <span class="sum">{{sum}}</span>{{/ebene0}}</li>
+                    <li>{{#ebene1}} <span class="cnt">{{cnt}}</span> x <span class="sum">{{sum}}</span>{{/ebene1}}</li>
+                    <li>{{#storno}} <span class="cnt">{{cnt}}</span> x <span class="sum">{{sum}}</span>{{/storno}}</li>
+                  {{/k2}}
+                  <li class="sum">gesamt <span class="cnt">{{total_k2_cnt}}</span><span class="sum">{{total_re}}/{{total_k2}}</span></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
